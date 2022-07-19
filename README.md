@@ -1,1 +1,1 @@
-# -email-tracking-gmail-addon
+# email-tracking-gmail-addon
