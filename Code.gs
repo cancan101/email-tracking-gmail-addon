@@ -190,8 +190,19 @@ function onGmailMessageOpen(e) {
       "MM/dd/yyyy h:mm a"
     );
 
-    if (view.clientIpGeo != null && view.clientIpGeo.data != null) {
-      ret = `${ret} (${view.clientIpGeo.data.city}, ${view.clientIpGeo.data.region})`;
+    const { clientIpGeo } = view;
+
+    if (clientIpGeo != null) {
+      if (clientIpGeo.data != null) {
+        const geoData = clientIpGeo.data;
+        const regionStr = geoData.region ?? geoData.regionCode;
+
+        const extraLocaleTxt = geoData.isMobile === true ? '; mobile' : '';
+        ret = `${ret} (${geoData.city}, ${regionStr}${extraLocaleTxt})`;
+      }
+      if (clientIpGeo.emailProvider != null) {
+        ret = `${ret} (${clientIpGeo.emailProvider})`;
+      }
     }
 
     return ret;
