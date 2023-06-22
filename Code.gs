@@ -132,22 +132,22 @@ function accessProtectedResource(url, method_opt, headers_opt, json) {
 function onGmailMessageOpen(e) {
   console.log("onGmailMessageOpen", e);
 
-  var service = getOAuthService();
-  var userId = service.getStorage().getValue("userId");
+  //var service = getOAuthService();
+  //var userId = service.getStorage().getValue("userId");
 
   // Activate temporary Gmail scopes, in this case to allow
   // message metadata to be read.
-  var accessToken = e.gmail.accessToken;
-  GmailApp.setCurrentMessageAccessToken(accessToken);
+  //var accessToken = e.gmail.accessToken;
+  //GmailApp.setCurrentMessageAccessToken(accessToken);
 
-  var messageId = e.gmail.messageId;
+  //var messageId = e.gmail.messageId;
   var threadId = e.gmail.threadId;
-  var message = GmailApp.getMessageById(messageId);
-  var subject = message.getSubject();
-  var sender = message.getFrom();
+  //var message = GmailApp.getMessageById(messageId);
+  //var subject = message.getSubject();
+  //var sender = message.getFrom();
 
-  const emailId = message.getId();
-  const emailIdRemake = BigInt(`0x${emailId}`).toString(10);
+  //const emailId = message.getId();
+  //const emailIdRemake = BigInt(`0x${emailId}`).toString(10);
 
   // Setting the access token with a gmail.addons.current.message.readonly
   // scope also allows read access to the other messages in the thread.
@@ -225,8 +225,7 @@ function onGmailMessageOpen(e) {
       CardService.newCardSection().addWidget(
         CardService.newKeyValue()
           .setTopLabel(
-            `Views (${
-              threadViews === undefined ? "n/a" : String(threadViews.length)
+            `Views (${threadViews === undefined ? "n/a" : String(threadViews.length)
             })`
           )
           .setContent(promptText)
